@@ -5,6 +5,7 @@
 (deftest graph
   (testing "has-d-egdge?"
     (let [graph {0 #{1} 1 #{2, 3}}]
+      ;; I let the true?s just for a matter of readability
       (is (true? (has-d-edge? graph 0 1)) "Does not assert the presence of the 0->1 edge properly")))
 
   (testing "has-egdge?"
