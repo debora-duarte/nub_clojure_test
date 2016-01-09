@@ -5,14 +5,31 @@
 
 (deftest bfs-shortest-path
   (def edges ['(6 4) '(4 3) '(4 5) '(3 2) '(5 2) '(5 1) '(2 1) '(1 0)])
+  (def graph (build-graph {} edges))
 
-  (testing "shortest-path"
+  (testing "single-source-shortest-path"
     (let [expected-shotest-path-to-0 [0 1 2 3 3 2 4]
-          graph (build-graph {} edges)
-          shortest-path-to-0 (shortest-path graph 0)]
+          shortest-path-to-0 (single-source-shortest-path graph 0)]
       (is (= 0 (compare expected-shotest-path-to-0 shortest-path-to-0))
-        (str  "Does not calculate the shortes-path correctly:" shortest-path-to-0 "\n"
-              "Expected: " expected-shotest-path-to-0)))))
+        (str  "Does not calculate the shortes-path correctly: " \newline
+              "Actual: " shortest-path-to-0 \newline
+              "Expected: " expected-shotest-path-to-0))))
+
+  (testing "all-pairs-shortest-path"
+    (let [expected-all-pairs-shortest-path
+      [[0 1 2 3 3 2 4]
+       [1 0 1 2 2 1 3]
+       [2 1 0 1 2 1 3]
+       [3 2 1 0 1 2 2]
+       [3 2 2 1 0 1 1]
+       [2 1 1 2 1 0 2]
+       [4 3 3 2 1 2 0]]
+      all-pairs-shortest-path (all-pairs-shortest-path graph)]
+      
+      (is (= 0 (compare expected-all-pairs-shortest-path all-pairs-shortest-path))
+        (str  "Does not calculate the all-pairs-shortes-path correctly: " \newline 
+              "Actual: " all-pairs-shortest-path \newline
+              "Expected: " expected-all-pairs-shortest-path)))))
 
 
 
