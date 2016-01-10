@@ -19,7 +19,11 @@
 (defn fraudulent-coefficient [k]
   (- 1 (pow 1/2 k)))
 
-(defn fraudulent [distances score client]
+(defn mark-as-fraudulent [distances score client]
   (let [coefficient-by-client (mapv #(fraudulent-coefficient %) (distances client))
         update-score (fn [[client, client-score]] (vector client (* (coefficient-by-client client) client-score)))]
     (mapv update-score score)))
+
+(defn mark-as-fraudulents [distances score clients]
+  (let [curried-mark-as-fraudulent (partial mark-as-fraudulent distances)]
+    (reduce curried-mark-as-fraudulent score clients)))

@@ -25,7 +25,7 @@
           (str "Does not calulate the rank correctly" \newline
                "Actual: " actual-ranking \newline "Expected: " expected-ranking)))))
 
-  (testing "fraudulent"
+  (testing "mark-as-fraudulent"
     (let [score [[5 1/9] [1 1/10] [2 1/10] [4 1/10] [3 1/11] [0 1/15] [6 1/15]]
           expected-score [[4 0.08750000000000001]
                           [5 0.08333333333333333] 
@@ -34,7 +34,21 @@
                           [6 0.0625]
                           [1 0.05]
                           [0 0.0]]
-          actual-score (rank (fraudulent distances score 0))]
+          actual-score (rank (mark-as-fraudulent distances score 0))]
+      (is (= 0 (compare expected-score actual-score))
+        (str "Does not calulate the rank correctly" \newline
+             "Actual: " actual-score \newline "Expected: " expected-score))))
+
+  (testing "mark-as-fraudulentS"
+    (let [score [[5 1/9] [1 1/10] [2 1/10] [4 1/10] [3 1/11] [0 1/15] [6 1/15]]
+          expected-score [[2 0.05625000000000001]
+                          [5 0.041666666666666664]
+                          [3 0.03977272727272727]
+                          [1 0.037500000000000006]
+                          [6 0.03125]
+                          [4 0.0]
+                          [0 0.0]]
+          actual-score (rank (mark-as-fraudulents distances score '(0 4)))]
       (is (= 0 (compare expected-score actual-score))
         (str "Does not calulate the rank correctly" \newline
              "Actual: " actual-score \newline "Expected: " expected-score))))))
