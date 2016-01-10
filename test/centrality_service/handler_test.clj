@@ -20,10 +20,10 @@
     (let [response (app (request :put "/add-edge/0/to/1"))]
       (is (= (:status response) 200))))
 
-  ; (testing "mark client as fraudulent endpoint"
-  ;   (let [response (app (request :put "/mark-as-fraudulent/44"))]
-  ;     (is (= (:status response) 200))))
+  (testing "mark client as fraudulent endpoint"
+    (let [response (app (request :put "/mark-as-fraudulent/44"))]
+      (is (= (:status response) 200))))
 
   (testing "not-found route"
-    (let [response (app (request :get "/something-inexistent"))]
+    (let [response (app (request :get "/something-inexistent-endpoint"))]
       (is (= (:status response) 404)))))
