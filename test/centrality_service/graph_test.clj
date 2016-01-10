@@ -26,7 +26,7 @@
 
   (testing "build-graph"
     (let [graph (build-graph {} edges)]
-      (is (true? (every? (fn [[v1 v2]] (has-edge? graph v1 v2)) edges)) 
+      (is (every? (fn [[v1 v2]] (has-edge? graph v1 v2)) edges) 
         (str "Does not add all the edges to the graph:" graph)))))
 
 

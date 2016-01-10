@@ -10,8 +10,11 @@
 
 ; Not all these bindings should be here.
 ; #TODO If there's time left, refactor to move some of them and to encapsulate some of the complexity,
-; specially the distances calculation
+; especially the distances calculation
 (defn set-graph [graph] (def ^:dynamic *graph* graph))
+; The whole point of functional programming is not keeping state and having functions without side-effects.
+; But in this case, keeping the graph and, especially, the distances makes the program a lot faster particularly
+; in the case of big graphs
 (defn set-distances [distances] (def ^:dynamic *distances* distances))
 (defn set-scores [scores] (def ^:dynamic *scores* scores))
 (defn add-fraudulent-client [client]

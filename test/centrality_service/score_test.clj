@@ -21,7 +21,7 @@
     (testing "for all vertices"
       (let [expected-ranking [[5 1/9] [1 1/10] [2 1/10] [4 1/10] [3 1/11] [0 1/15] [6 1/15]]
             actual-ranking (rank (closeness distances))]
-        (is (= 0 (compare expected-ranking actual-ranking))
+        (is (= expected-ranking actual-ranking)
           (str "Does not calulate the rank correctly" \newline
                "Actual: " actual-ranking \newline "Expected: " expected-ranking)))))
 
@@ -35,7 +35,7 @@
                           [1 0.05]
                           [0 0.0]]
           actual-score (rank (mark-as-fraudulent distances score 0))]
-      (is (= 0 (compare expected-score actual-score))
+      (is (= expected-score actual-score)
         (str "Does not calulate the rank correctly" \newline
              "Actual: " actual-score \newline "Expected: " expected-score))))
 
@@ -49,7 +49,7 @@
                           [4 0.0]
                           [0 0.0]]
           actual-score (rank (mark-as-fraudulents distances score '(0 4)))]
-      (is (= 0 (compare expected-score actual-score))
+      (is (= expected-score actual-score)
         (str "Does not calulate the rank correctly" \newline
              "Actual: " actual-score \newline "Expected: " expected-score))))))
     

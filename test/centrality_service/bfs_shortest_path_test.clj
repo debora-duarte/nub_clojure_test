@@ -10,10 +10,7 @@
   (testing "single-source-shortest-path"
     (let [expected-shotest-path-to-0 [0 1 2 3 3 2 4]
           shortest-path-to-0 (single-source-shortest-path graph 0)]
-      (is (= 0 (compare expected-shotest-path-to-0 shortest-path-to-0))
-        (str  "Does not calculate the shortes-path correctly: " \newline
-              "Actual: " shortest-path-to-0 \newline
-              "Expected: " expected-shotest-path-to-0))))
+      (is (= expected-shotest-path-to-0 shortest-path-to-0))))
 
   (testing "all-pairs-shortest-path"
     (let [expected-all-pairs-shortest-path
@@ -26,7 +23,7 @@
        [4 3 3 2 1 2 0]]
       all-pairs-shortest-path (all-pairs-shortest-path graph)]
       
-      (is (= 0 (compare expected-all-pairs-shortest-path all-pairs-shortest-path))
+      (is (= expected-all-pairs-shortest-path all-pairs-shortest-path)
         (str  "Does not calculate the all-pairs-shortes-path correctly: " \newline 
               "Actual: " all-pairs-shortest-path \newline
               "Expected: " expected-all-pairs-shortest-path)))))
