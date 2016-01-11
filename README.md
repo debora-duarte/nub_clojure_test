@@ -10,7 +10,7 @@ The calculation code is divided in four main namespaces:
 I decided to maintain the shortest path calculation in its own namespace instead of putting it in the graph namespace because, this way, it is decoupled from the graph and can be changed easily (if we decide to use a better algorithm for instance). The graph is also decoupled from the way the data enters the application - via file or input. It only cares about receiving a list of edges.
 I implemented an adjacency-lists structure to keep the graph and decided to use a map instead of a vector to make the initial construction easier, otherwise, I would have to read the whole file to allocate the needed vector - and since the access to items in clojure maps is pretty decent, I thought using a map instead wouldn’t be a problem.
 
-Since the graph is unweighted, I implemented the shortest path using Breadth First Search. I thought about implementing the Dijkstra algorithm and preparing for weighted edges, but it performs worse than BFS (O(V*(E+V)) x O(V^3)) so my program would be prepared for a more generic graph, but would have a worse performance. With more time and access to the articles listed on shortest path wikipedia entry I could implement one of the all-pairs shortest path algorithms and have a performance of O(EV) (Thorup 1999) instead of running breadth first search for every vertice in the graph as I did.
+Since the graph is unweighted, I implemented the shortest path using Breadth First Search. I thought about implementing the Dijkstra algorithm and preparing for weighted edges, but it performs worse than BFS (O(V\*(E+V)) x O(V<sup>3</sup>)) so my program would be prepared for a more generic graph, but would have a worse performance. With more time and access to the articles listed on shortest path wikipedia entry I could implement one of the all-pairs shortest path algorithms and have a performance of O(E\*V) (Thorup 1999) instead of running breadth first search for every vertice in the graph as I did.
 
 The other two namespaces are:
 
@@ -19,9 +19,33 @@ The other two namespaces are:
 
 I didn’t put many comments in the code because I believe that readable code is better than comments and I tried to maintain the code as readable as possible. I only did that in places where I felt it was really necessary. 
 
-## Installation
+## Build and run
 
-Download from http://example.com/FIXME.
+* Clone the project
+* Install [Leining] (http://leiningen.org/)
+
+### Development environment
+
+* Run server:
+  ```
+  cd into-project
+  lein ring server-headless
+  ```
+  
+* Make requests to: http://localhost:3000/centrality-service/
+  
+### Production environment
+
+* Build war: 
+
+  `lein ring uberwar centrality-service.war`
+  
+* Deploy **centrality-service.war** that was generated in **/target** to an application server
+* Make requests to: http://localhost:8080/centrality-service/
+
+  (Tested in Wildfly 8.1) 
+
+  
 
 ## Endpoints
 
