@@ -9,9 +9,10 @@
 
 (defn initialize [] 
   (let [edges (util-ns/load-edges edges-file)]
-    ; Not all these bindings should be here.
-    ; #TODO If there's time left, refactor to move some of them and to encapsulate some of the complexity,
-    ; especially the distances calculation
+    ; A question that I made myself here was: is it better to left all these bindings that change here, in one
+    ; place and maintain the part where there are changing bindings and functions with side effects in one
+    ; place only or is it better to take the distance binding and all its calculation to the scores namespace
+    ; and hide some complexity but have side effects and changing bindings ocurring in more than one place?
     (def graph (ref (graph-ns/build-graph {} edges)))
     (def distances (ref (shortest-path/all-pairs-shortest-path @graph)))
     (def scores (ref (score/rank (score/closeness @distances))))
@@ -28,11 +29,13 @@
     (alter scores (partial score/mark-as-fraudulents @distances) @fraudulent-clients)))
 
 (defn mark-as-fraudulent [client]
-  (dosync
-    (commute fraudulent-clients conj client) ; adds to the list of fraudulent clients
-    (alter scores (partial score/mark-as-fraudulent @distances) client))) ; recalculates score
+  (if (@fraudulent-clients client) ; if client has already been marked 
+    @scores 
+    (dosync 
+      (commute fraudulent-clients conj client) ; adds to the list of fraudulent clients
+      (alter scores (partial score/mark-as-fraudulent @distances) client)))) ; recalculates score 
 
-; If there's time left, make a real test - an automatic one - out of it
+; If there's time left, make a real test - an automatic one! - out of it
 (defn -main
   [& args]
   (println "---------------------------after initialize--------------------------------------")

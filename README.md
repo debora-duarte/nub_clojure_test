@@ -31,4 +31,7 @@ Download from http://example.com/FIXME.
 
 **POST /mark-as-fraudulent/:client** - marks a client as fraudulent 
 
-### Bugs
+### Possible
+
+* Maybe save some state in a database instead of keeping all the state in refs?
+* Some validation in the parameters of the request to provide better errors than just "Internal error" for everything
