@@ -4,7 +4,7 @@
   (reduce + 0 distances))
 
 (defn closeness 
-  ([distances vertice] (/ 1 (farness distances vertice)))
+  ([distances vertice] (double (/ 1 (farness distances vertice))))
   
   ([distances]
     (let [vertices (range (count distances))

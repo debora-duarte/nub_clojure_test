@@ -55,7 +55,9 @@ I didn’t put many comments in the code because I believe that readable code is
 
 **POST /mark-as-fraudulent/:client** - marks a client as fraudulent 
 
-### Possible
+
+## Possible improvements
 
 * Maybe save some state in a database instead of keeping all the state in refs?
 * Some validation in the parameters of the request to provide better errors than just "Internal error" for everything
+* Search for corner cases and bugs, create tests for them and implement solutions

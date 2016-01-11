@@ -11,19 +11,24 @@
 
   (testing "farness"
     (let [vertice 0]
-      (is (= 15 (farness (distances vertice) vertice)) "Doest not calculate de farness correctly")))
+      (is (= 15 (farness (distances vertice) vertice)))))
 
   (testing "closeness"
     (testing "for one vertice"
       (let [vertice 0]
-        (is (= 1/15 (closeness (distances vertice) vertice)) "Doest not calculate de closeness correctly")))
+        (is (= 0.06666666666666667 (closeness (distances vertice) vertice)))))
 
     (testing "for all vertices"
-      (let [expected-ranking [[5 1/9] [1 1/10] [2 1/10] [4 1/10] [3 1/11] [0 1/15] [6 1/15]]
+      (let [expected-ranking [[5 0.1111111111111111]
+                              [1 0.1]
+                              [2 0.1] 
+                              [4 0.1] 
+                              [3 0.09090909090909091]
+                              [0 0.06666666666666667]
+                              [6 0.06666666666666667]]
             actual-ranking (rank (closeness distances))]
         (is (= expected-ranking actual-ranking)
-          (str "Does not calulate the rank correctly" \newline
-               "Actual: " actual-ranking \newline "Expected: " expected-ranking)))))
+          (str "Actual: " actual-ranking \newline "Expected: " expected-ranking)))))
 
   (testing "mark-as-fraudulent"
     (let [score [[5 1/9] [1 1/10] [2 1/10] [4 1/10] [3 1/11] [0 1/15] [6 1/15]]
