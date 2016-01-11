@@ -17,11 +17,11 @@
       (is (= (get-in response [:headers "Content-Type"]) "application/json; charset=utf-8"))))
 
   (testing "add edge endpoint"
-    (let [response (app (request :put "/add-edge/0/to/1"))]
+    (let [response (app (request :post "/add-edge/0/to/1"))]
       (is (= (:status response) 200))))
 
   (testing "mark client as fraudulent endpoint"
-    (let [response (app (request :put "/mark-as-fraudulent/44"))]
+    (let [response (app (request :post "/mark-as-fraudulent/44"))]
       (is (= (:status response) 200))))
 
   (testing "not-found route"
