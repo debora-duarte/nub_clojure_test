@@ -18,7 +18,7 @@
   ; with "lein ring server". It also allows us to package up our application
   ; as a standalone .jar or as a .war for deployment to a servlet contianer
   ; (I know... SO 2005).
-  :plugins [[lein-ring "0.8.10"]]
+  :plugins [[lein-ring "0.8.11"]]
   ; See https://github.com/weavejester/lein-ring#web-server-options for the
   ; various options available for the lein-ring plugin
   :ring {:init centrality-service.core/initialize
