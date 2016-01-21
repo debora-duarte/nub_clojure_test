@@ -22,7 +22,7 @@ I didn’t put many comments in the code because I believe that readable code is
 ## Build and run
 
 * Clone the project
-* Install [Leining] (http://leiningen.org/)
+* Install [Leining](http://leiningen.org/)
 
 ### Development environment
 

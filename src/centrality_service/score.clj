@@ -1,14 +1,14 @@
 (ns centrality-service.score)
 
 (defn farness [distances vertice]
-  (reduce + 0 distances))
+  (reduce + 0 (distances vertice)))
 
 (defn closeness 
   ([distances vertice] (double (/ 1 (farness distances vertice))))
   
   ([distances]
     (let [vertices (range (count distances))
-          pair-vertice-closeness (fn [i] (vector i (closeness (distances i) i)))]
+          pair-vertice-closeness (fn [i] (vector i (closeness distances i)))]
       (mapv pair-vertice-closeness vertices))))
 
 (defn rank [score]

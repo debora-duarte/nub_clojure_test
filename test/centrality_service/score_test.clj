@@ -11,12 +11,12 @@
 
   (testing "farness"
     (let [vertice 0]
-      (is (= 15 (farness (distances vertice) vertice)))))
+      (is (= 15 (farness distances vertice)))))
 
   (testing "closeness"
     (testing "for one vertice"
       (let [vertice 0]
-        (is (= 0.06666666666666667 (closeness (distances vertice) vertice)))))
+        (is (= 0.06666666666666667 (closeness distances vertice)))))
 
     (testing "for all vertices"
       (let [expected-ranking [[5 0.1111111111111111]
